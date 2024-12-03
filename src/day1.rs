@@ -1,6 +1,8 @@
 use std::{collections::HashMap, fs};
 
 pub fn run() {
+    println!("Day 1:");
+
     let mut left: Vec<i32> = vec![];
     let mut right: Vec<i32> = vec![];
 
@@ -37,5 +39,4 @@ pub fn run() {
     });
 
     println!("similiarity score: {}", similiarity_score);
-
 }
