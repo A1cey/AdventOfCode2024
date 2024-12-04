@@ -72,7 +72,7 @@ pub fn run() {
         });
 
     println!("{} 'XMAS' were found.", xmas_sum);
-    println!("{} X-MAS were found.", mas_sum);
+    println!("{} 'X-MAS' were found.", mas_sum);
     println!();
 }
 
