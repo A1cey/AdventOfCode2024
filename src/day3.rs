@@ -41,6 +41,7 @@ pub fn run() {
     }
 
     println!("Result: {}", sum);
+    println!();
 }
 
 fn is_valid_pattern(pattern: &str) -> Valid {

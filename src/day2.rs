@@ -34,6 +34,7 @@ pub fn run() {
     }
     println!("{} reports are safe.", ans1);
     println!("{} reports are now safe.", ans2);
+    println!();
 }
 
 fn is_save(values: &mut Vec<i32>) -> bool {

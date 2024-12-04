@@ -38,5 +38,6 @@ pub fn run() {
         acc + num * occurences_r.get(num).unwrap_or(&0)
     });
 
-    println!("similiarity score: {}", similiarity_score);
+    println!("Similiarity score: {}", similiarity_score);
+    println!()
 }
