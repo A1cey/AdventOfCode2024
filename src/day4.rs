@@ -3,7 +3,7 @@ use std::fs;
 pub fn run() {
     println!("Day 4:");
 
-    let mut sum = 0;
+    let mut xmas_sum = 0;
 
     let input = fs::read_to_string("src/input4.txt").unwrap();
     let line_len = input.find("\n").unwrap() - 1;
@@ -13,8 +13,8 @@ pub fn run() {
     let mut diagonal_lines_rev: Vec<Vec<char>> = vec![];
 
     input.lines().enumerate().for_each(|(line_idx, line)| {
-        sum += read_xmas_from_line(line);
-        sum += read_xmas_from_line(line.chars().rev().collect::<String>().as_str());
+        xmas_sum += read_xmas_from_line(line);
+        xmas_sum += read_xmas_from_line(line.chars().rev().collect::<String>().as_str());
 
         line.chars().enumerate().for_each(|(idx, c)| {
             match transposed_lines.get(idx) {
@@ -48,12 +48,43 @@ pub fn run() {
         });
     });
 
-    sum += read_xmas_from_vec(&transposed_lines);
-    sum += read_xmas_from_vec(&diagonal_lines);
-    sum += read_xmas_from_vec(&diagonal_lines_rev);
+    xmas_sum += read_xmas_from_vec(&transposed_lines);
+    xmas_sum += read_xmas_from_vec(&diagonal_lines);
+    xmas_sum += read_xmas_from_vec(&diagonal_lines_rev);
 
-    println!("{} 'XMAS' gefunden.", sum);
+    let mut mas_sum = 0;
+
+    input
+        .lines()
+        .collect::<Vec<&str>>()
+        .windows(3)
+        .for_each(|chunk| {
+            for idx in 0..line_len - 2 {
+                if is_a(chunk[1], idx + 1)
+                    && ((is_m(chunk[0], idx) && is_s(chunk[2], idx + 2))
+                        || (is_s(chunk[0], idx) && is_m(chunk[2], idx + 2)))
+                    && ((is_m(chunk[0], idx + 2) && is_s(chunk[2], idx))
+                        || (is_s(chunk[0], idx + 2) && is_m(chunk[2], idx)))
+                {
+                    mas_sum += 1;
+                }
+            }
+        });
+
+    println!("{} 'XMAS' were found.", xmas_sum);
+    println!("{} X-MAS were found.", mas_sum);
     println!();
+}
+
+fn is_a(s: &str, idx: usize) -> bool {
+    s.chars().nth(idx).unwrap().eq(&'A')
+}
+
+fn is_m(s: &str, idx: usize) -> bool {
+    s.chars().nth(idx).unwrap().eq(&'M')
+}
+fn is_s(s: &str, idx: usize) -> bool {
+    s.chars().nth(idx).unwrap().eq(&'S')
 }
 
 fn read_xmas_from_vec(v: &Vec<Vec<char>>) -> i32 {
