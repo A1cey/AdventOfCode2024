@@ -103,6 +103,7 @@ fn read_xmas_from_line(line: &str) -> i32 {
     if line.len() < word_len {
         return 0;
     }
+
     let mut sum = 0;
     let mut idx = 0;
 
