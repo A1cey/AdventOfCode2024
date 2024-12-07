@@ -21,6 +21,7 @@
 // ......#X..
 
 //41
+#![allow(dead_code)]
 
 use std::{collections::HashSet, fs};
 
