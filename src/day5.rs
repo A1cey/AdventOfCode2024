@@ -5,7 +5,7 @@ use std::{
 };
 
 pub fn run() {
-    let input = fs::read_to_string("src/input5.txt").unwrap();
+    let input = fs::read_to_string("src/input/input5.txt").unwrap();
 
     let (rules, updates_str) = input.split_once("\r\n\r\n").unwrap();
 
@@ -56,7 +56,7 @@ pub fn run() {
 // pub fn run() {
 //     println!("Day 5:");
 
-//     let input = fs::read_to_string("src/input5.txt").unwrap();
+//     let input = fs::read_to_string("src/input/input5.txt").unwrap();
 
 //     let divider = input.find("\r\n\r\n").unwrap();
 //     let rules: Vec<&str> = input[0..divider].lines().collect();

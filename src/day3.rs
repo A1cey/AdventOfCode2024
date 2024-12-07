@@ -8,7 +8,7 @@ enum Valid {
 pub fn run() {
     println!("Day 3:");
 
-    let input = fs::read_to_string("src/input3.txt").unwrap();
+    let input = fs::read_to_string("src/input/input3.txt").unwrap();
 
     let mut sum = 0;
     let mut idx = 0;

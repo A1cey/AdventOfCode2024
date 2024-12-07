@@ -5,7 +5,7 @@ pub fn run() {
 
     let mut xmas_sum = 0;
 
-    let input = fs::read_to_string("src/input4.txt").unwrap();
+    let input = fs::read_to_string("src/input/input4.txt").unwrap();
     let line_len = input.find("\n").unwrap() - 1;
 
     let mut transposed_lines: Vec<Vec<char>> = vec![];

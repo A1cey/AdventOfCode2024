@@ -6,7 +6,7 @@ pub fn run() {
     let mut left: Vec<i32> = vec![];
     let mut right: Vec<i32> = vec![];
 
-    fs::read_to_string("src/input1.txt")
+    fs::read_to_string("src/input/input1.txt")
         .unwrap()
         .split("\n")
         .map(|s| s.split_whitespace().collect::<Vec<&str>>())

@@ -6,7 +6,7 @@ pub fn run() {
     let mut ans1 = 0;
     let mut ans2 = 0;
 
-    for line in fs::read_to_string("src/input2.txt")
+    for line in fs::read_to_string("src/input/input2.txt")
         .unwrap()
         .split("\n")
         .collect::<Vec<&str>>()
