@@ -28,7 +28,6 @@ pub fn run() {
             Equation::new(result.parse().unwrap(), nums)
         })
         .filter(|eq| solve(&eq.nums, 1, eq.result, eq.nums[0]))
-        .inspect(|eq| println!("{:?}", eq))
         .fold(0, |sum, eq| sum + eq.result);
 
     println!("Total calibration result: {}", result);
