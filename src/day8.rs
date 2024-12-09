@@ -33,16 +33,14 @@ pub fn run() {
                 .enumerate()
                 .filter(|(_, c)| c.ne(&'.'))
                 .for_each(|(col, c)| {
-                    println!(
-                        "{:?}",
-                        Point::new(row.try_into().unwrap(), col.try_into().unwrap()),
-                    );
                     acc.entry(c)
                         .or_insert_with(|| Vec::new())
                         .push(Point::new(row as isize, col as isize))
                 });
             acc
         });
+
+    println!("{}",points_map.iter().map(|(_,v)| v.len()).sum::<usize>());
         
     let unique_locations = points_map
         .iter()
@@ -69,18 +67,6 @@ pub fn run() {
 fn find_antinodes<'a>(a: &Point, b: &Point) -> Vec<Point> {
     let distance_row = b.row - a.row;
     let distance_col = b.col - a.col;
-
-    println!(
-        "a: {}|{} b: {}|{}\na1: {}|{} b1: {}|{}",
-        a.row,
-        a.col,
-        b.row,
-        b.col,
-        a.row - distance_row,
-        a.col - distance_col,
-        b.row + distance_row,
-        b.col + distance_col
-    );
 
     vec![
         Point::new(a.row - distance_row, a.col - distance_col),

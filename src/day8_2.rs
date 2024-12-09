@@ -21,6 +21,8 @@ pub fn run() {
         }
     }
 
+    println!("{}",positions.len());
+
     let mut antinodes_part1 = 0;
     let mut antinodes_part2 = 0;
     for antennas in positions {
