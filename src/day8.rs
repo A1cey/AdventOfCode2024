@@ -1,7 +1,6 @@
 use std::{
     collections::{HashMap, HashSet},
     fs,
-    ops::Sub,
 };
 
 #[derive(Debug, PartialEq, Eq, Hash)]
@@ -40,8 +39,8 @@ pub fn run() {
             acc
         });
 
-    println!("{}",points_map.iter().map(|(_,v)| v.len()).sum::<usize>());
-        
+    println!("{}", points_map.iter().map(|(_, v)| v.len()).sum::<usize>());
+
     let unique_locations = points_map
         .iter()
         .filter(|(_, points)| points.len() > 1)

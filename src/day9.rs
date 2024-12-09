@@ -41,7 +41,6 @@ pub fn run() {
 fn calculate_first_checksum(input: &[u32]) -> isize {
     let mut is_id = true;
     let mut idx = 0;
-
     let mut compressed_block = input.iter().fold(Vec::new(), |mut acc, &num| {
         if is_id {
             (0..num).for_each(|_| acc.push(Some(idx)));
@@ -65,9 +64,9 @@ fn calculate_first_checksum(input: &[u32]) -> isize {
 
     compressed_block
         .iter()
-        .map(|num| num.unwrap())
         .enumerate()
-        .fold(0, |acc, (idx, num)| acc + num * (idx as isize))
+        .map(|(idx, &id)| id.unwrap() * (idx as isize))
+        .sum()
 }
 
 fn calculate_second_checksum(input: &[u32]) -> isize {
@@ -92,16 +91,11 @@ fn calculate_second_checksum(input: &[u32]) -> isize {
         let block_idx = compressed_block.len() - idx;
 
         if let Block::File(file) = compressed_block[block_idx] {
-            if let Some(empty_idx) =
-                compressed_block[..block_idx]
-                    .iter()
-                    .position(|block| match block {
-                        Block::Empty(len) => *len >= file.len,
-                        Block::File(_) => false,
-                    })
+            if let Some(empty_idx) = compressed_block[..block_idx]
+                .iter()
+                .position(|block| matches!(block, Block::Empty(len) if *len >= file.len))
             {
                 compressed_block.insert(empty_idx, Block::File(file));
-                // remove this ? should always be Block::Empty
                 if let Block::Empty(len) = compressed_block[empty_idx + 1] {
                     compressed_block[empty_idx + 1] = Block::Empty(len.saturating_sub(file.len));
                 }
@@ -115,19 +109,11 @@ fn calculate_second_checksum(input: &[u32]) -> isize {
 
     compressed_block
         .iter()
-        .fold(Vec::new(), |mut acc, block| {
-            match block {
-                Block::File(file) => (0..file.len).for_each(|_| acc.push(Some(file.val))),
-                Block::Empty(len) => (0..*len).for_each(|_| acc.push(None)),
-            }
-            acc
+        .flat_map(|block| match block {
+            Block::File(file) => vec![Some(file.val); file.len],
+            Block::Empty(len) => vec![None; *len],
         })
-        .iter()
         .enumerate()
-        .fold(0, |mut acc, (idx, block)| {
-            if let Some(num) = block {
-                acc += num * (idx as isize);
-            }
-            acc
-        })
+        .map(|(idx, block)| block.map(|num| num * (idx as isize)).unwrap_or(0))
+        .sum()
 }
