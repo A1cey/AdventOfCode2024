@@ -49,18 +49,20 @@ pub fn run() {
         }
     }
 
-    regions.iter().for_each(|region| {
-        println!(
-            "Tiles: {}; Fences: {}",
-            region.1.len(),
-            region.0 //count_corners(&region.1, field.len(), field[0].len())
-        );
-        // region
-        //     .1
-        //     .iter()
-        //     .for_each(|field| println!("{}: {}|{}", field.tile_type, field.row, field.col));
-        println!("----------------------");
-    });
+
+    // regions.iter().for_each(|region| {
+    //     println!(
+    //         "Tiles: {}; Fences: {}",
+    //         region.1.len(),
+    //         region.0 //count_corners(&region.1, field.len(), field[0].len())
+    //     );
+    //     // region
+    //     //     .1
+    //     //     .iter()
+    //     //     .for_each(|field| println!("{}: {}|{}", field.tile_type, field.row, field.col));
+    //     println!("----------------------");
+    // });
+
 
     let price = regions
         .iter()
