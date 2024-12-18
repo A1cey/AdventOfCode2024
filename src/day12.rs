@@ -49,7 +49,6 @@ pub fn run() {
         }
     }
 
-
     // regions.iter().for_each(|region| {
     //     println!(
     //         "Tiles: {}; Fences: {}",
@@ -62,7 +61,6 @@ pub fn run() {
     //     //     .for_each(|field| println!("{}: {}|{}", field.tile_type, field.row, field.col));
     //     println!("----------------------");
     // });
-
 
     let price = regions
         .iter()

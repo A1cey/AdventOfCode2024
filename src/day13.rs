@@ -37,24 +37,25 @@ pub fn run() {
     println!("Minimum number of tokens: {min_tokens}");
     println!("Minimum number of tokens after multiplying: {min_tokens_2}");
 
-    let min_tokens = solve1(fs::read_to_string("src/input/input13.txt")
-        .unwrap().as_str(), 0);
-     let min_tokens_2 = solve1(fs::read_to_string("src/input/input13.txt")
-        .unwrap().as_str(), 10000000000000);
+    let min_tokens = solve1(
+        fs::read_to_string("src/input/input13.txt")
+            .unwrap()
+            .as_str(),
+        0,
+    );
+    let min_tokens_2 = solve1(
+        fs::read_to_string("src/input/input13.txt")
+            .unwrap()
+            .as_str(),
+        10000000000000,
+    );
 
     println!("Minimum number of tokens: {min_tokens}");
     println!("Minimum number of tokens after multiplying: {min_tokens_2}");
     println!();
 }
 
-fn solved_equations(
-    dx_a: i64,
-    dy_a: i64,
-    dx_b: i64,
-    dy_b: i64,
-    goal_x: i64,
-    goal_y: i64,
-) -> i64 {
+fn solved_equations(dx_a: i64, dy_a: i64, dx_b: i64, dy_b: i64, goal_x: i64, goal_y: i64) -> i64 {
     // solution of solving the equations:
     let b = (goal_y * dx_a - goal_x * dx_b) / (dy_b * dx_a - dy_a * dx_b);
     let a = (goal_x - b * dy_a) / dx_a;

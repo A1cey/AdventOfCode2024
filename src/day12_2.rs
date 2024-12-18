@@ -131,6 +131,12 @@ impl Puzzle {
 }
 
 pub fn run() {
-    println!("Solution part 1: {}", Puzzle::from("src/input/input12.txt").part_1());
-    println!("Solution part 2: {}", Puzzle::from("src/input/input12.txt").part_2());
+    println!(
+        "Solution part 1: {}",
+        Puzzle::from("src/input/input12.txt").part_1()
+    );
+    println!(
+        "Solution part 2: {}",
+        Puzzle::from("src/input/input12.txt").part_2()
+    );
 }
